@@ -6,6 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
+  position: relative;
 }
 
 #snake-board {
@@ -17,6 +18,13 @@ body {
   grid-template-columns: repeat(21, 1fr);
 }
 
+.score {
+  color: white;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
 .snake {
   background-color: rgb(100, 100, 224);
   border: 1px solid black;
@@ -25,4 +33,5 @@ body {
 .food {
   background-color: yellow;
   border-radius: 50%;
+  border: 1px solid black;
 }
