@@ -1,16 +1,39 @@
 import {
   drawSnake,
-  SNAKE_SPEED,
   updateSnake,
   getSnakeHead,
   snakeIntersection,
 } from "./snake.js";
 import { drawFood, updateFood } from "./food.js";
 import { outsideBoard } from "./cell.js";
-
+let SNAKE_SPEED = 2;
 let isGameOver = false;
+
 const snakeBoard = document.querySelector("#snake-board");
 let lastRenderTime = 0;
+const easyBtn = document.querySelector("#easy");
+const mediumBtn = document.querySelector("#medium");
+const hardBtn = document.querySelector("#hard");
+
+easyBtn.addEventListener("click", function () {
+  SNAKE_SPEED = 2;
+  window.requestAnimationFrame(main);
+  mediumBtn.classList.add("vanish");
+  hardBtn.classList.add("vanish");
+});
+mediumBtn.addEventListener("click", function () {
+  SNAKE_SPEED = 5;
+  window.requestAnimationFrame(main);
+  easyBtn.classList.add("vanish");
+  hardBtn.classList.add("vanish");
+});
+hardBtn.addEventListener("click", function () {
+  SNAKE_SPEED = 10;
+  window.requestAnimationFrame(main);
+  easyBtn.classList.add("vanish");
+  mediumBtn.classList.add("vanish");
+});
+
 function main(currentTime) {
   if (isGameOver) {
     if (confirm("Game over. Press Ok to restart")) {
@@ -43,5 +66,3 @@ function draw() {
 function checkGameOver() {
   isGameOver = outsideBoard(getSnakeHead()) || snakeIntersection();
 }
-
-window.requestAnimationFrame(main);
